@@ -8,3 +8,5 @@ pypdf
 sentence-transformers
 openai
 tiktoken
+
+
