@@ -127,6 +127,23 @@ if uploaded_file and api_key:
 
         # 3. 保存助手回答
         st.session_state.messages.append({"role": "assistant", "content": full_response})
+        # 只有当有对话记录时才显示下载按钮
+    if "messages" in st.session_state and len(st.session_state.messages) > 0:
+        st.divider()  # 画一条分割线
+
+        # 把对话记录转换成字符串
+        chat_history_text = ""
+        for msg in st.session_state.messages:
+            role = "我" if msg["role"] == "user" else "AI助手"
+            chat_history_text += f"[{role}]: {msg['content']}\n\n"
+
+        # 下载按钮
+        st.download_button(
+            label="💾 导出对话记录 (保存为TXT)",
+            data=chat_history_text,
+            file_name="论文阅读记录.txt",
+            mime="text/plain"
+        )
 
 else:
     st.info("👈 请在左侧输入API Key并上传PDF文件开始。")
