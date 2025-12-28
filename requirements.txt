@@ -8,4 +8,4 @@ pypdf
 sentence-transformers
 openai
 tiktoken
-
+python-pptx
